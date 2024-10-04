@@ -15,14 +15,14 @@
 (defn- drop-empty-field-and-combine [acc previous-line current-line]
   (conj (butlastv acc) (apply conj
                               (butlastv previous-line)
-                              (str (last previous-line) (first current-line))
+                              (str (last previous-line) (last current-line))
                               (rest current-line))))
 
 (defn- space-seperate-combining-field [acc previous-line current-line]
   (conj (butlastv acc) (apply conj
                               (butlastv previous-line)
                               (str (last previous-line) " " (last current-line))
-                              current-line)))
+                              (rest current-line))))
 
 (defn combine-continuations
   "reducer which combines current 88 line with previous line or leaves the line intact"
